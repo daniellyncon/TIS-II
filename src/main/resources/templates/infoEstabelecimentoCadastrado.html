@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EasyPark</title>
+    <meta name="description" content="Sistema de Estacionamento - EasyPark">
+    <meta name="Author" contents="Otávio Guimarães, Daniel Lyncon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="icon" href="../images/icon.png" />
+</head>
+
+<body>
+    <div class="cabecalho">
+        <a href="index.html">
+            <h1 class="logo">EasyPark - Gestão de Estacionamento</h1>
+        </a>
+        <button class="btn-menu">
+			<i class="fa fa-bars fa-lg"></i>
+		</button>
+        <nav class="menu-mobile">
+            <div class="container-close">
+                <a class="btn-close">x</a>
+            </div>
+            <div class="menu-contents">
+                <ul>
+                    <li><a href="index" class="button">Inicio</a></li>
+                    <li><a href="cadastroEstabelecimento" class="button">Cadastrar
+							Estabelecimento</a></li>
+                    <li><a href="entradaVeiculo" class="button">Entrada de
+							Veículo</a></li>
+                    <li><a href="saidaVeiculo" class="button">Saída de Veículo</a></li>
+                    <li><a href="#">Relatórios</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="menu-desktop">
+            <ul id="nav">
+                <li><a href="index" class="button">Inicio</a></li>
+                <li><a id="setInfoEstacionamento" href="cadastroEstabelecimento" class="button">Alterar Estabelecimento</a></li>
+                <li><a href="entradaVeiculo" class="button">Entrada de
+						Veículo</a></li>
+                <li><a href="saidaVeiculo" class="button">Saída de Veículo</a></li>
+                <li><a href="#">Relatórios</a>
+                    <ul>
+                        <li><a href="/veiculosEstacionados">Veículos Estacionados</a></li>
+                        <li><a href="estatisticaDoEstabelecimento">Estatística do Estabelecimento</a></li>
+                        <li><a href="lotacaoTabela">Lotação - Tempo Funcionamento</a></li>
+						<li><a href="taxaDeRetorno">Taxa de retorno</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="blank-space"></div>
+        <div class="aplicacao">
+
+            <h2 class="titulo">Cadastro do estabelecimento efetuado com sucesso</h2>
+            <h3>
+                <span class="tituloAtributo">Nome: </span> <span class="infoAtributo" th:text="${nomeEstabelecimento}"></span>
+            </h3>
+            <h3>
+                <span class="tituloAtributo">Horário de Abertura: </span><span class="infoAtributo" th:text="${horaAbertura}"></span>
+            </h3>
+
+            <h3>
+                <span class="tituloAtributo">Horário Fechamento: </span> <span class="infoAtributo" th:text="${horaFechamento}"></span>
+            </h3>
+
+            <h3>
+                <span class="tituloAtributo">Quantidade de Vagas: </span><span class="infoAtributo" th:text="${quantidadeVagas}"></span>
+            </h3>
+
+            <h3>
+                <span class="tituloAtributo">Valor hora: </span><span class="infoAtributo" th:text="${valorHora}"></span>
+            </h3>
+        </div>
+    </div>
+</body>
+<script th:src="@{/javascript/main.js}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+<script>
+    $(".btn-menu").click(function() {
+        $(".menu-mobile").show();
+    })
+    $(".btn-close").click(function() {
+        $(".menu-mobile").hide();
+    })
+</script>
+
+
+</html>

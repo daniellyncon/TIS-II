@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EasyPark</title>
+    <meta name="description" content="Sistema de Estacionamento - EasyPark">
+    <meta name="Author" contents="Otávio Guimarães, Daniel Lyncon">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="icon" href="../images/icon.png" />
+</head>
+
+<body>
+    <div class="cabecalho">
+        <a href="">
+            <h1 class="logo">EasyPark - Gestão de Estacionamento</h1>
+        </a>
+        <button class="btn-menu">
+			<i class="fa fa-bars fa-lg"></i>
+		</button>
+        <nav class="menu-mobile">
+            <div class="container-close">
+                <a class="btn-close">x</a>
+            </div>
+            <div class="menu-contents">
+                <ul>
+                    <li><a href="index" class="button">Inicio</a></li>
+                    <li><a href="cadastroEstabelecimento" class="button">Alterar Estabelecimento</a></li>
+                    <li><a href="entradaVeiculo" class="button">Entrada de Veículo</a></li>
+                    <li><a href="saidaVeiculo" class="button">Saída de Veículo</a></li>
+                    <li><a href="#">Relatórios</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="menu-desktop">
+            <ul id="nav">
+                <li><a href="index" class="button">Inicio</a></li>
+                <li><a id="setInfoEstacionamento" href="cadastroEstabelecimento" class="button">Alterar Estabelecimento</a></li>
+                <li id="v1" class="visivel"><a href="entradaVeiculo" class="button">Entrada de Veículo</a></li>
+                <li id="v2" class="visivel"><a href="saidaVeiculo" class="button">Saída de Veículo</a></li>
+                <li id="v3" class="visivel"><a href="#">Relatórios</a>
+                    <ul>
+                        <li id="v4" class="visivel"><a href="veiculosEstacionados">Veículos Estacionados</a></li>
+                        <li id="v5" class="visivel"><a href="estatisticaDoEstabelecimento">Estatísticas do Estabelecimento</a></li>
+                        <li id="v6" class="visivel"><a href="lotacaoTabela">Lotação - Tempo Funcionamento</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="divInfo" class="info-estacionamento">
+                <span class="nomeEstabelecimento" id="nomeEstabelecimento" th:text="${nomeEstabelecimentoInfo}"></span>
+                <span class="destaque">Vagas disponiveis: <span class="destaque" name="vagasDisponiveis" th:text="${vagasDisponiveis}"></span> </span>
+                <span>Hora de Abertura: <span name="horaAberturaInfo" th:text="${horaAberturaInfo}">Hora Abertura</span></span>
+                <span>Hora de Fechamento: <span name="horaFechamentoInfo" th:text="${horaFechamentoInfo}"></span> </span>
+                <span>Vagas Totais: <span name="quantidadeVagasInfo" th:text="${quantidadeVagasInfo}"></span></span>
+                <span>Valor Hora: R$ <span name="precoInfo" th:text="${precoInfo}"></span></span>
+            </div>
+        </div>
+
+        <div class="blank-space"></div>
+        <div class="aplicacao">
+
+            <form method="post" th:object="${estacionamento}">
+                <h2 class="titulo">Informações do Estacionamento</h2>
+                <div class="group">
+                    <input class="input-text" type="text" name="nomeEstabelecimento" th:field="*{nomeEstabelecimento}" required> <span class="highlight"></span> <span class="bar"></span> <label>Nome do Estabelecimento</label>
+                </div>
+
+                <div class="group">
+                    <input class="input-text" type="time" name="horaAbertura" th:field="*{horaAbertura}" required> <span class="highlight"></span> <span class="bar"></span> <label>Horário de Abertura</label>
+                </div>
+
+                <div class="group">
+                    <input class="input-text" type="time" name="horaFechamento" th:field="*{horaFechamento}" required> <span class="highlight"></span> <span class="bar"></span> <label>Horário
+						de Fechamento</label>
+                </div>
+
+                <div class="group">
+                    <input class="input-text" type="number" name="quantidadeVagas" th:field="*{quantidadeVagas}" required> <span class="highlight"></span> <span class="bar"></span> <label>Quantidade
+						Vagas</label>
+                </div>
+
+                <div class="group">
+                    <input class="input-text" type="number" min="0.1" max="1000.00" step="0.1" th:field="*{valorHora}" name="valorHora" required> <span class="highlight"></span> <span class="bar"></span> <label>Valor
+						Hora</label>
+                </div>
+
+                <button type="submit" class="btn-form" value="cadastrar">Cadastrar</button>
+            </form>
+</body>
+<script th:src="@{/javascript/main.js}"></script>
+<script th:src="@{/javascript/main.js}"></script>
+<script th:src="@{/javascript/main.js}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+<script>
+    $(".btn-menu").click(function() {
+        $(".menu-mobile").show();
+    })
+    $(".btn-close").click(function() {
+        $(".menu-mobile").hide();
+    })
+</script>
+</body>
+
+</html>

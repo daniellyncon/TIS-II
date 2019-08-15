@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EasyPark</title>
+    <meta name="description" content="Sistema de Estacionamento - EasyPark">
+    <meta name="Author" contents="Otávio Guimarães, Daniel Lyncon">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="icon" href="../images/icon.png" />
+</head>
+
+<body>
+    <div class="cabecalho">
+            <h1 class="logo">EasyPark - Gestão de Estacionamento</h1>
+        </a>
+        <button class="btn-menu">
+			<i class="fa fa-bars fa-lg"></i>
+		</button>
+        <nav class="menu-mobile">
+            <div class="container-close">
+                <a class="btn-close">x</a>
+            </div>
+            <div class="menu-contents">
+                <ul>
+                    <li><a href="index" class="button">Inicio</a></li>
+                    <li><a href="cadastroEstabelecimento" class="button">Cadastrar Estabelecimento</a></li>
+                    <li><a href="entradaVeiculo" class="button">Entrada de Veículo</a></li>
+                    <li><a href="saidaVeiculo" class="button">Saída de Veículo</a></li>
+                    <li><a href="#">Relatórios</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="menu-desktop">
+            <ul id="nav">
+                <li><a href="" class="button">Inicio</a></li>
+                <li><a id="setInfoEstacionamento" href="cadastroEstabelecimento" class="button">Alterar Estabelecimento</a></li>
+                <li><a href="entradaVeiculo" class="button">Entrada de Veículo</a></li>
+                <li><a href="saidaVeiculo" class="button">Saída de Veículo</a></li>
+                <li><a href="#">Relatórios</a>
+                    <ul>
+                        <li><a href="/veiculosEstacionados">Veículos Estacionados</a></li>
+                        <li><a href="/estatisticaDoEstabelecimento">Estatística do Estabelecimento</a></li>
+                        <li><a href="lotacaoTabela">Lotação - Tempo Funcionamento</a></li>
+						<li><a href="taxaDeRetorno">Taxa de retorno</a></li>
+						
+                    </ul>
+                </li>
+            </ul>
+            <div id="divInfo" class="info-estacionamento">
+                <span class="nomeEstabelecimento" id="nomeEstabelecimento" th:text="${nomeEstabelecimentoInfo}"></span>
+                <span class="destaque">Vagas disponiveis: <span class="destaque" name="vagasDisponiveis" th:text="${vagasDisponiveis}"></span> </span>
+                <span>Hora de Abertura: <span name="horaAberturaInfo" th:text="${horaAberturaInfo}">Hora Abertura</span></span>
+                <span>Hora de Fechamento: <span name="horaFechamentoInfo" th:text="${horaFechamentoInfo}"></span> </span>
+                <span>Vagas Totais: <span name="quantidadeVagasInfo" th:text="${quantidadeVagasInfo}"></span></span>
+                <span>Valor Hora: R$ <span name="precoInfo" th:text="${precoInfo}"></span></span>
+            </div>
+        </div>
+        <div class="blank-space"></div>
+        <div class="aplicacao">
+
+            <div class="tabela estatistica">
+                <div class="row-cabecalho">
+                    <div class="cell">Estatistica do Estabelecimento</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Média de tempo dos veículos no estacionamento em horas</div>
+                    <div class="cell"><span class="mediaTempoPermanecido" th:text="${mediaTempoPermanecido}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="cell">Média Arrecadada por hora</div>
+                    <div class="cell"><span class="mediaArrecadadoHora" th:text="${mediaArrecadadoHora}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        <span>Total de Veiculos Estacionados</span><br>
+                        <span class="detalhe">(Geral + Atual)</span>
+                    </div>
+                    <div class="cell"><span class="totalVeiculos" th:text="${quantidadeTotalVeiculos}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="cell">Porcentagem tipos dos veiculos</div>
+                    <div class="cell">
+                        <div class="cell">
+                            <span name="porcentagemVeiculos" th:utext="${porcentagemCarros}"></span>
+                        </div>
+                        <div class="cell">
+                            <span name="porcentagemVeiculos" th:utext="${porcentagemMotos}"></span>
+                        </div>
+                        <div class="cell">
+                            <span name="porcentagemVeiculos" th:utext="${porcentagemCaminhonetes}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script th:src="@{/javascript/main.js}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+<script>
+    $(".btn-menu").click(function() {
+        $(".menu-mobile").show();
+    })
+    $(".btn-close").click(function() {
+        $(".menu-mobile").hide();
+    })
+</script>
+</body>
+
+</html>
+
+</html>
